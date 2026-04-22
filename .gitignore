@@ -1,0 +1,14 @@
+# Cache Pythona
+__pycache__/
+*.pyc
+
+# Ustawienia PyCharma
+.idea/
+
+# Pliki testowe / wygenerowane
+*.png
+*.jpg
+*.jpeg
+
+# PDF z wymaganiami projektu
+*.pdf
