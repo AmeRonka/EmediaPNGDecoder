@@ -84,6 +84,20 @@ def decode_plte(data: bytes) -> None:
         b = data[i * 3 + 2]
         print(f"    [{i:>3}] R={r:>3} G={g:>3} B={b:>3}")
 
+def decode_gama(data: bytes) -> None:
+    gamma = u32(data, 0)
+    print(f"  Gamma: {gamma / 100000.0}")
+
+def decode_srgb(data: bytes) -> None:
+    intent = data[0]
+    intents = {
+        0: "Perceptual", 
+        1: "Relative colorimetric", 
+        2: "Saturation", 
+        3: "Absolute colorimetric"
+    }
+    print(f"  sRGB Intent: {intent} — {intents.get(intent, '???')}")
+
 
 # Mapowanie typu chunka na funkcję dekodującą. Łatwo dodać kolejne wpisy.
 DECODERS = {
@@ -93,4 +107,6 @@ DECODERS = {
     "pHYs": decode_phys,
     "tIME": decode_time,
     "eXIf": decode_exif,
+    "gAMA": decode_gama,
+    "sRGB": decode_srgb,
 }
